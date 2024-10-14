@@ -53,9 +53,15 @@ const greetingComponent = new GreetingComponent(
   { x: { position: 0 }, y: { position: 0 } }, // Fixed position (left, top)
   { value: 30, unit: "%" }, // Width as a percentage
   { value: 10, unit: "%" }, // Height as a percentage
-  1, // Margin
   {} // Initial props
+  1, // Margin is optional default value is 1
 );
+
+const template = new Template();
+template.addComponent(greetingComponent);
+
+const renderer = new Renderer(template);
+renderer.render();
 ```
 
 ### Relative Positioning
@@ -77,7 +83,6 @@ const greetingComponent = new GreetingComponent(
   { x: { position: 0 }, y: { position: 0 } },
   { value: 30, unit: "%" },
   { value: 10, unit: "%" },
-  1,
   {}
 );
 
@@ -90,31 +95,51 @@ const statusComponent = new StatusComponent(
   }, // Relative positioning
   { value: 70, unit: "%" },
   { value: 10, unit: "%" },
-  1,
   { status: "Online" }
 );
 
 const template = new Template();
-template.components.push(greetingComponent, statusComponent);
+template.addComponent(greetingComponent);
+template.addComponent(statusComponent);
 
 const renderer = new Renderer(template);
 renderer.render();
 ```
 
-### Full complex example
+### Full example
+
+For generating a full grid with multiple components and visualizing separate components, you can use custom inmplementations in render method or use library like [boxen](https://www.npmjs.com/package/boxen).
 
 ```typescript
 import { Renderer, Template, Component } from "@pompidup/cligrid";
 
 class HeaderComponent extends Component {
   render() {
-    return "Header Section";
+    const { width, height } = this.getActualDimensions(
+      process.stdout.columns,
+      process.stdout.rows
+    ); // Retrieve actual dimensions of component based on terminal size
+    return boxen("Header Section", {
+      borderColor: "green",
+      borderStyle: "double",
+      width: width - this.margin * 2,
+      height: height - this.margin * 2,
+    });
   }
 }
 
 class MenuComponent extends Component {
   render() {
-    return "Menu Section";
+    const { width, height } = this.getActualDimensions(
+      process.stdout.columns,
+      process.stdout.rows
+    );
+    return boxen("Menu Section", {
+      borderColor: "green",
+      borderStyle: "double",
+      width: width - this.margin * 2,
+      height: height - this.margin * 2,
+    });
   }
 }
 
@@ -122,13 +147,31 @@ class ContentComponent extends Component<{
   content: string;
 }> {
   render() {
-    return this.props.content;
+    const { width, height } = this.getActualDimensions(
+      process.stdout.columns,
+      process.stdout.rows
+    );
+    return boxen(this.props.content, {
+      borderColor: "green",
+      borderStyle: "double",
+      width: width - this.margin * 2,
+      height: height - this.margin * 2,
+    });
   }
 }
 
 class FooterComponent extends Component {
   render() {
-    return "Footer Section";
+    const { width, height } = this.getActualDimensions(
+      process.stdout.columns,
+      process.stdout.rows
+    );
+    return boxen("Footer Section", {
+      borderColor: "green",
+      borderStyle: "double",
+      width: width - this.margin * 2,
+      height: height - this.margin * 2,
+    });
   }
 }
 
@@ -138,7 +181,6 @@ const menuComponent = new MenuComponent(
   { x: { position: 0 }, y: { position: 0 } }
   { value: 20, unit: "%" },
   { value: 80, unit: "%" },
-  0,
   {}
 );
 
@@ -148,7 +190,6 @@ const headerComponent = new HeaderComponent(
   { x: { position: "right", relativeTo: "menu1" }, y: { position: 0 } },
   { value: 80, unit: "%" },
   { value: 20, unit: "%" },
-  0,
   {}
 );
 
@@ -158,7 +199,6 @@ const content1Component = new ContentComponent(
   { x: { position: "right", relativeTo: "menu1" }, y: { position: "bottom", relativeTo: "header1" } },
   { value: 40, unit: "%" },
   { value: 60, unit: "%" },
-  0,
   { content: "Content 1" }
 );
 
@@ -168,7 +208,6 @@ const content2Component = new ContentComponent(
   { x: { position: "right", relativeTo: "content1" }, y: { position: "bottom", relativeTo: "header1" } },
   { value: 40, unit: "%" },
   { value: 60, unit: "%" },
-  0,
   { content: "Content 2" }
 );
 
@@ -178,7 +217,6 @@ const footerComponent = new FooterComponent(
   { x: { position: 0 }, y: { position: "bottom", relativeTo: "content2" } },
   { value: 100, unit: "%" },
   { value: 20, unit: "%" },
-  0,
   {}
 );
 
@@ -200,18 +238,6 @@ renderer.render();
 ```typescript
 import { Renderer, Template, Component } from "@pompidup/cligrid";
 
-class HeaderComponent extends Component {
-  render() {
-    return "Header Section";
-  }
-}
-
-class MenuComponent extends Component {
-  render() {
-    return "Menu Section";
-  }
-}
-
 class ContentComponent extends Component<{
   content: string;
 }> {
@@ -220,10 +246,38 @@ class ContentComponent extends Component<{
   }
 }
 
+class StatusComponent extends Component<{
+  status: string;
+}> {
+  render() {
+    return `Status: ${this.props.status}`;
+  }
+}
+
+const contentComponent = new ContentComponent(
+  "content1",
+  "ContentComponent",
+  { x: { position: 0 }, y: { position: 0 } },
+  { value: 30, unit: "%" },
+  { value: 10, unit: "%" },
+  {}
+);
+
+const statusComponent = new StatusComponent(
+  "status1",
+  "StatusComponent",
+  {
+    x: { position: "right", relativeTo: "content1" },
+    y: { position: 0 },
+  },
+  { value: 70, unit: "%" },
+  { value: 10, unit: "%" },
+  { status: "Online" }
+);
+
 const template = new Template();
-template.addComponent(menuComponent);
-template.addComponent(headerComponent);
 template.addComponent(contentComponent);
+template.addComponent(statusComponent);
 
 const renderer = new Renderer(template);
 

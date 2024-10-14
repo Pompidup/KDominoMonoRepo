@@ -38,7 +38,6 @@ describe("Renderer", () => {
       { x: { position: 0 }, y: { position: 0 } },
       { value: 10, unit: "px" },
       { value: 5, unit: "px" },
-      0,
       {}
     );
     const drawComponentSpy = vi.spyOn(renderer as any, "drawComponent");
@@ -56,7 +55,6 @@ describe("Renderer", () => {
       { x: { position: 0 }, y: { position: 0 } },
       { value: 10, unit: "px" },
       { value: 5, unit: "px" },
-      0,
       {}
     );
 
@@ -77,7 +75,6 @@ describe("Renderer", () => {
       { x: { position: 0 }, y: { position: 0 } },
       { value: 10, unit: "px" },
       { value: 5, unit: "px" },
-      0,
       {}
     );
 

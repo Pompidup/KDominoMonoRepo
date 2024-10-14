@@ -40,8 +40,8 @@ abstract class Component<P extends Props = {}> extends EventEmitter {
     position: Position,
     width: Size,
     height: Size,
-    margin: number,
-    props: P
+    props: P,
+    margin: number = 1
   ) {
     super();
     this.id = id;
@@ -49,8 +49,8 @@ abstract class Component<P extends Props = {}> extends EventEmitter {
     this.position = position;
     this.width = width;
     this.height = height;
-    this.margin = margin;
     this.props = props;
+    this.margin = margin;
   }
 
   abstract render(): string;

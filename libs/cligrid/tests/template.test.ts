@@ -28,7 +28,6 @@ describe("Template", () => {
       { x: { position: 0 }, y: { position: 0 } },
       { value: 10, unit: "px" },
       { value: 5, unit: "px" },
-      0,
       {}
     );
 
@@ -43,7 +42,6 @@ describe("Template", () => {
       { x: { position: 10 }, y: { position: 20 } },
       { value: 50, unit: "%" },
       { value: 50, unit: "%" },
-      0,
       {}
     );
 
@@ -53,8 +51,8 @@ describe("Template", () => {
     const { absolutePosition } = mockComponent;
     expect(absolutePosition?.width).toBe(50);
     expect(absolutePosition?.height).toBe(25);
-    expect(absolutePosition?.x).toBe(10);
-    expect(absolutePosition?.y).toBe(20);
+    expect(absolutePosition?.x).toBe(11); // 10 + default margin
+    expect(absolutePosition?.y).toBe(21); // 20 + default margin
   });
 
   it("should calculate positions relative to other components correctly", () => {
@@ -64,7 +62,6 @@ describe("Template", () => {
       { x: { position: 0 }, y: { position: 0 } },
       { value: 50, unit: "%" },
       { value: 50, unit: "%" },
-      0,
       {}
     );
 
@@ -74,7 +71,6 @@ describe("Template", () => {
       { x: { position: "right", relativeTo: "parent" }, y: { position: 0 } },
       { value: 25, unit: "%" },
       { value: 25, unit: "%" },
-      0,
       {}
     );
 
@@ -83,7 +79,7 @@ describe("Template", () => {
     template.updateLayout(100, 50);
 
     const { absolutePosition } = childComponent;
-    expect(absolutePosition?.x).toBe(50); // Right of parent means start from parent's width if margins are zero
-    expect(absolutePosition?.y).toBe(0);
+    expect(absolutePosition?.x).toBe(51); // Right of parent means start from parent's width + default margin
+    expect(absolutePosition?.y).toBe(1); // 1 + default margin
   });
 });
