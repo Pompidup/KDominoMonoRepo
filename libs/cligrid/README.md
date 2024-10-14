@@ -4,7 +4,7 @@
 ![license](https://img.shields.io/npm/l/@pompidup/cligrid)
 ![build](https://img.shields.io/github/actions/workflow/status/pompidup/cligrid/build.yml)
 
-Changelog is available [here](https://github.com/pompidup/cligrid/blob/main/CHANGELOG.md).
+Changelog is available [here](https://github.com/Pompidup/KDominoMonoRepo/blob/main/libs/cligrid/CHANGELOG.md).
 
 # CliGrid Library
 
