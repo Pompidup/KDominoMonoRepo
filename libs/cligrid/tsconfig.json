@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": true,
+    "rootDir": ".",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "types": ["node"],
+    "resolveJsonModule": true,
+    "target": "es2022",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "moduleDetection": "force",
+    "noUncheckedIndexedAccess": true,
+    "isolatedModules": true,
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "lib": ["es2022"],
+    "emitDeclarationOnly": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
