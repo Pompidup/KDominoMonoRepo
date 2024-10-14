@@ -4,6 +4,8 @@
 ![license](https://img.shields.io/npm/l/@pompidup/cligrid)
 ![build](https://img.shields.io/github/actions/workflow/status/pompidup/cligrid/build.yml)
 
+Changelog is available [here](https://github.com/pompidup/cligrid/blob/main/CHANGELOG.md).
+
 # CliGrid Library
 
 CliGrid is a powerful library designed to provide a flexible and extensible system for managing and rendering terminal user interfaces. Built with scalability and customization in mind, CliGrid allows developers to create intricate terminal-based applications with ease.
@@ -252,9 +254,3 @@ Contributions to CliGrid are welcome! If you have ideas or improvements, please 
 ## License
 
 CliGrid is released under the MIT License.
-
-## Support
-
-For any questions or support, please contact the development team at support@pompidup.com or join our community forums.
-
-We hope CliGrid enhances your terminal application development experience!
