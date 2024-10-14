@@ -6,6 +6,8 @@
 
 Changelog is available [here](https://github.com/Pompidup/KDominoMonoRepo/blob/main/libs/cligrid/CHANGELOG.md).
 
+Illustration of the library in action ![](https://github.com/Pompidup/KDominoMonoRepo/blob/main/libs/cligrid/assets/cligrid.gif)
+
 # CliGrid Library
 
 CliGrid is a powerful library designed to provide a flexible and extensible system for managing and rendering terminal user interfaces. Built with scalability and customization in mind, CliGrid allows developers to create intricate terminal-based applications with ease.
