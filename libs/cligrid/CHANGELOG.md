@@ -1,5 +1,11 @@
 # @pompidup/cligrid
 
+## 0.2.1
+
+### Patch Changes
+
+- Add missing information in package.json
+
 ## 0.2.0
 
 ### Minor Changes

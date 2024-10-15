@@ -1,6 +1,7 @@
 {
   "name": "@pompidup/cligrid",
-  "version": "0.2.0",
+  "version": "0.2.1",
+  "description": "A powerful library designed to provide a flexible and extensible system for managing and rendering terminal user interfaces.",
   "author": "Pompidup",
   "license": "MIT",
   "type": "module",
@@ -9,6 +10,26 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pompidup/KDominoMonoRepo.git",
+    "directory": "libs/cligrid"
+  },
+  "keywords": [
+    "cli",
+    "grid",
+    "terminal",
+    "ui",
+    "cligrid",
+    "responsive",
+    "dynamic",
+    "layout",
+    "component"
+  ],
+  "bugs": {
+    "url": "https://github.com/Pompidup/KDominoMonoRepo/issues"
+  },
+  "homepage": "https://github.com/Pompidup/KDominoMonoRepo/tree/main/libs/cligrid#readme",
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean",
     "dev": "tsup src/index.ts --format esm --dts --watch",
