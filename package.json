@@ -8,7 +8,9 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "start": "turbo run start --filter=@apps/cli",
+    "dev:cli": "turbo run dev --filter=@pompidup/kingdomino-cli",
+    "start:cli": "turbo run start --filter=@pompidup/kingdomino-cli",
+    "build:cli": "turbo run build --filter=@pompidup/kingdomino-cli",
     "publish-packages": "turbo run build lint test && changeset version && changeset publish"
   },
   "devDependencies": {
